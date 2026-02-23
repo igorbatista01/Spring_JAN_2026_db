@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Produtos</title>
+</head>
+<body>
+	<h2>Lista de Produtos</h2>
+	
+	<a th:href="@{/produtocaminho/novo}">
+	   Novo Produto </a>
+	
+	<table>
+	<tr>
+		<th>Nome</th>
+		<th>Preço</th>
+		<th>Ações</th>
+	</tr>
+	<tr th:each="p : ${produtos}">
+		<td th:text="${p.nome}"></td>
+		<td th:text="${p.preco}"></td>
+		<td>
+		<a th:href="@{/produtocaminho/edita/{id}(id=${p.id})}">
+		Editar </a>
+		</td> 
+	</tr>
+	</table>
+</body>
+</html>

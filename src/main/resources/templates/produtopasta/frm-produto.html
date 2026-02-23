@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Produto</title>
+</head>
+<body>
+
+	<form action="/produtocaminho/gravar" 
+	      th:object="${produto}" method="post">
+		<div>
+			<input type=hidden th:field="*{id}">
+			<label>Nome</label>
+			<input type=text th:field="*{nome}">
+		</div>
+		<div>
+			<label>Preço</label>
+			<input type=number th:field="*{preco}" >
+		</div>
+		<div>	
+			<button type= "submit">Gravar</button>
+		</div>	
+	
+	</form>
+	<a th:href="@{/produtocaminho}">
+	   Voltar </a>
+</body>
+</html>
