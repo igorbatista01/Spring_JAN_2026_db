@@ -2,20 +2,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Categoria</title>
+<title>Categorias</title>
 </head>
 <body>
-
+	<h2></h2>
 	<form action="/categoriacaminho/gravar" 
 	      th:object="${categoria}" method="post">
 		<div>
 			<input type=hidden th:field="*{id}">
 			<label>Descrição</label>
 			<input type=text th:field="*{descricao}">
-		</div>
-		<div>
-			<label>Preço</label>
-			<input type=number th:field="*{preco}" >
+			<div style="color: red" th:if="${#fields.hasErrors('descricao')}" 
+                 th:errors="*{descricao}"></div>
 		</div>
 		<div>	
 			<button type= "submit">Gravar</button>
