@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.senai.sp.teste.model.Produto;
 import br.senai.sp.teste.repository.ProdutoRepository;
+import br.senai.sp.teste.service.CategoriaService;
 import br.senai.sp.teste.service.ProdutoService;
 
 @Controller
@@ -25,6 +26,8 @@ public class ProdutoController {
 	@Autowired
 	ProdutoService service;
 
+	@Autowired
+	CategoriaService serviceCategoria;
 	
 	public ProdutoController() {	
 		
@@ -44,6 +47,7 @@ public class ProdutoController {
 	public String novo(Model model) {
 
 		model.addAttribute("produto", new Produto());
+		model.addAttribute("categorias", serviceCategoria.buscarTodos());
 		return "produtopasta/frm-produto";
 	}
 	
@@ -51,6 +55,7 @@ public class ProdutoController {
 	public String edita(@PathVariable Long id, Model model) {
 			
 			model.addAttribute("produto", service.buscarPorId(id));	
+			model.addAttribute("categorias", serviceCategoria.buscarTodos());
 		return "produtopasta/frm-produto";
 	}
 	
@@ -58,6 +63,7 @@ public class ProdutoController {
 	public String gravar(Produto produto) {
 		
 		service.inserir(produto);
+		
 		return "redirect:/produtocaminho";
 	}
 	

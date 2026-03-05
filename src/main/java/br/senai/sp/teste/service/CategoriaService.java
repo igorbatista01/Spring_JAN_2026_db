@@ -49,5 +49,9 @@ public class CategoriaService {
 		repo.deleteById(id);
 	}
 	
+	public List<Categoria> buscarTodos() {
+		return repo.findAll();
+	}
+	
 	
 }

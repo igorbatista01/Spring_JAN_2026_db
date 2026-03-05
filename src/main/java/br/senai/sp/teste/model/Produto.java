@@ -4,7 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-//
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
 @Entity
 public class Produto {
 	
@@ -13,6 +15,11 @@ public class Produto {
 	private Long id;
 	private String nome;
 	private float preco;
+	// O Option false é para dizer que o produto tem que ter uma categoria, ou seja, não pode ser nulo
+	@ManyToOne(fetch = jakarta.persistence.FetchType.EAGER, optional = false)
+	@JoinColumn(name="categoriaId", nullable = false)
+	
+	private Categoria categoria;
 	
 	public Produto() {}
 	
@@ -40,5 +47,15 @@ public class Produto {
 	public void setPreco(float preco) {
 		this.preco = preco;
 	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+	
+	
 
 }
