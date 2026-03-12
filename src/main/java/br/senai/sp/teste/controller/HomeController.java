@@ -7,9 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/home")
 public class HomeController {
-	@GetMapping
+	@GetMapping("/")
+	public String root() {
+		System.err.println("Acessou raiz!");
+		return "home/index";
+	}
+	
+	@GetMapping("/home")
 	public String home() {
 		System.err.println("Passei por Aqui!");
 		return "home/index";

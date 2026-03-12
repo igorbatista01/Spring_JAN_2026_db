@@ -1,11 +1,19 @@
 package br.senai.sp.teste.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Produto {
@@ -15,14 +23,32 @@ public class Produto {
 	private Long id;
 	private String nome;
 	private float preco;
-	// O Option false é para dizer que o produto tem que ter uma categoria, ou seja, não pode ser nulo
-	@ManyToOne(fetch = jakarta.persistence.FetchType.EAGER, optional = false)
-	@JoinColumn(name="categoriaId", nullable = false)
 	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name="categoriaId", nullable = false)
 	private Categoria categoria;
 	
-	public Produto() {}
+	@ManyToMany
+	@JoinTable(name = "produto_fornecedor",
+		joinColumns = @JoinColumn(name="produto_id"),
+		inverseJoinColumns = @JoinColumn(name = "fornecedor_id")
+			)
+	private Set<Fornecedor> fornecedores = new HashSet<>();
 	
+	@OneToOne(mappedBy = "produto", cascade = CascadeType.REMOVE,
+			fetch = FetchType.LAZY)
+	private Estoque estoque;
+	
+	public Estoque getEstoque() {
+		return estoque;
+	}
+
+	public void setEstoque(Estoque estoque) {
+		this.estoque = estoque;
+	}
+
+	public Produto() {}
+
 	public Produto(Long id, String nome, float preco) {
 		this.id = id;
 		this.nome = nome;
@@ -54,6 +80,14 @@ public class Produto {
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}
+
+	public Set<Fornecedor> getFornecedores() {
+		return fornecedores;
+	}
+
+	public void setFornecedores(Set<Fornecedor> fornecedores) {
+		this.fornecedores = fornecedores;
 	}
 	
 	

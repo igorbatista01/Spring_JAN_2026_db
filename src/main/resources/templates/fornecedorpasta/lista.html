@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Produtos</title>
+<title>Fornecedores</title>
 <style>
 	body {
 		font-family: Arial, sans-serif;
@@ -76,29 +76,29 @@
 <body>
 	<div class="container">
 		<div class="navigation">
-			<a th:href="@{/produtocaminho/novo}">Novo Produto</a>
+			<a th:href="@{/fornecedorcaminho/novo}">Novo Fornecedor</a>
 			<a href="/home" class="back-home">← Voltar à Home</a>
 		</div>
 		
-		<h2>Lista de Produtos</h2>
+		<h2>Lista de Fornecedores</h2>
 		
 		<table>
 		<tr>
 			<th>Nome</th>
-			<th>Preço</th>
+			<th>Contato</th>
 			<th>Ações</th>
 		</tr>
-		<tr th:each="p : ${produtos}">
-			<td th:text="${p.nome}"></td>
-			<td th:text="${p.preco}"></td>
+		<tr th:each="f : ${fornecedores}">
+			<td th:text="${f.nome}"></td>
+			<td th:text="${f.contato}"></td>
 			<td>
-			<a th:href="@{/produtocaminho/edita/{id}(id=${p.id})}">
+			<a th:href="@{/fornecedorcaminho/edita/{id}(id=${f.id})}">
 			Editar </a>
 			</td> 
 			<td>
-			<a th:href="@{/produtocaminho/excluir/{id}(id=${p.id})}">
+			<a th:href="@{/fornecedorcaminho/excluir/{id}(id=${f.id})}">
 			Excluir </a>
-			</td>        
+			</td> 		
 		</tr>
 		</table>
 	</div>

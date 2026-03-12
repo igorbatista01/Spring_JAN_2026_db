@@ -3,39 +3,133 @@
 <head>
 <meta charset="UTF-8">
 <title>Categorias</title>
+<style>
+	body {
+		font-family: Arial, sans-serif;
+		background-color: #f5f5f5;
+		margin: 0;
+		padding: 20px;
+	}
+	
+	.container {
+		max-width: 900px;
+		margin: 0 auto;
+		background-color: white;
+		padding: 20px;
+		border-radius: 8px;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	}
+	
+	h2 {
+		color: #333;
+	}
+	
+	.navigation {
+		margin-bottom: 20px;
+	}
+	
+	.navigation a {
+		display: inline-block;
+		margin-right: 10px;
+		padding: 8px 15px;
+		background-color: #4CAF50;
+		color: white;
+		text-decoration: none;
+		border-radius: 4px;
+		transition: background-color 0.3s;
+	}
+	
+	.navigation a:hover {
+		background-color: #45a049;
+	}
+	
+	.navigation a.back-home {
+		background-color: #2196F3;
+	}
+	
+	.navigation a.back-home:hover {
+		background-color: #0b7dda;
+	}
+	
+	table {
+		width: 100%;
+		border-collapse: collapse;
+		margin-top: 20px;
+	}
+	
+	table th, table td {
+		border: 1px solid #ddd;
+		padding: 12px;
+		text-align: left;
+	}
+	
+	table th {
+		background-color: #4CAF50;
+		color: white;
+	}
+	
+	table tr:hover {
+		background-color: #f5f5f5;
+	}
+	
+	.search-form {
+		background-color: #f9f9f9;
+		padding: 15px;
+		border-radius: 4px;
+		margin-bottom: 15px;
+	}
+	
+	.search-form button {
+		padding: 8px 15px;
+		background-color: #2196F3;
+		color: white;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		transition: background-color 0.3s;
+	}
+	
+	.search-form button:hover {
+		background-color: #0b7dda;
+	}
+</style>
 </head>
 <body>
-	<h2>Lista de Categorias</h2>
-	
-	<form action="/categoriacaminho" method="get">
-		<div>
-			<label>Buscar por Descrição:</label>
-			<input type=text name="descricao" th:value="${descricao}">
+	<div class="container">
+		<div class="navigation">
+			<a href="/categoriacaminho/novo">Nova Categoria</a>
+			<a href="/home" class="back-home">← Voltar à Home</a>
 		</div>
-		<div>	
-			<button type= "submit">Buscar</button>
-		</div>	
-	</form>	
-	
-	<a th:href="@{/categoriacaminho/novo}">
-	   Nova Categoria </a>
-	   	
-	<table>
-	<tr>
-		<th>Descrição</th>
-		<th>Ações</th>
-	</tr>
-	<tr th:each="c : ${categorias}">
-		<td th:text="${c.descricao}"></td>
-		<td>
-		<a th:href="@{/categoriacaminho/edita/{id}(id=${c.id})}">
-		Editar </a>
-		</td> 
-		<td>
-		<a th:href="@{/categoriacaminho/excluir/{id}(id=${c.id})}">
-		Excluir </a>
-		</td> 		
-	</tr>
-	</table>
+		
+		<h2>Lista de Categorias</h2>
+		
+		<form action="/categoriacaminho" method="get" class="search-form">
+			<div>
+				<label>Buscar por Descrição:</label>
+				<input type=text name="descricao" th:value="${descricao}">
+			</div>
+			<div>	
+				<button type="submit">Buscar</button>
+			</div>	
+		</form>	
+		
+		<table>
+		<tr>
+			<th>Descrição</th>
+			<th>Ações</th>
+		</tr>
+		<tr th:each="c : ${categorias}">
+			<td th:text="${c.descricao}"></td>
+			<td>
+			<a th:href="@{/categoriacaminho/edita/{id}(id=${c.id})}">
+			Editar </a>
+			</td> 
+			<td>
+			<a th:href="@{/categoriacaminho/excluir/{id}(id=${c.id})}">
+			Excluir </a>
+			</td> 		
+		</tr>
+		</table>
+	</div>
 </body>
 </html>

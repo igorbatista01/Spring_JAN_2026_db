@@ -1,13 +1,6 @@
 package br.senai.sp.teste;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-@SpringBootApplication
+// Classe de suporte - não é a aplicação principal
 public class ProdutoApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(ProdutoApplication.class, args);
-	}
 
 }

@@ -3,8 +3,96 @@
 <head>
 <meta charset="UTF-8">
 <title>Página Principal</title>
+<style>
+	body {
+		font-family: Arial, sans-serif;
+		background-color: #f5f5f5;
+		margin: 0;
+		padding: 20px;
+	}
+	
+	.container {
+		max-width: 600px;
+		margin: 0 auto;
+		background-color: white;
+		padding: 30px;
+		border-radius: 8px;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	}
+	
+	h1 {
+		text-align: center;
+		color: #333;
+		margin-bottom: 30px;
+	}
+	
+	.menu-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 15px;
+		margin-bottom: 30px;
+	}
+	
+	.menu-item {
+		padding: 20px;
+		background-color: #f9f9f9;
+		border: 2px solid #ddd;
+		border-radius: 5px;
+		text-align: center;
+		transition: all 0.3s ease;
+	}
+	
+	.menu-item:hover {
+		border-color: #4CAF50;
+		background-color: #f0f8f0;
+		transform: translateY(-2px);
+		box-shadow: 0 4px 8px rgba(76, 175, 80, 0.2);
+	}
+	
+	.menu-item a {
+		text-decoration: none;
+		color: #333;
+		font-weight: bold;
+		font-size: 16px;
+		display: block;
+		padding: 10px;
+	}
+	
+	.menu-item a:hover {
+		color: #4CAF50;
+	}
+	
+	.icon {
+		font-size: 32px;
+		margin-bottom: 10px;
+	}
+</style>
 </head>
 <body>
-	<h1>Eu já Sabia!</h1>
+	<div class="container">
+		<h1>Sistema de Gestão</h1>
+		
+		<div class="menu-grid">
+			<div class="menu-item">
+				<div class="icon">📦</div>
+				<a href="/categoriacaminho">Categorias</a>
+			</div>
+			
+			<div class="menu-item">
+				<div class="icon">🏢</div>
+				<a href="/fornecedorcaminho">Fornecedores</a>
+			</div>
+			
+			<div class="menu-item">
+				<div class="icon">📋</div>
+				<a href="/produtocaminho">Produtos</a>
+			</div>
+			
+			<div class="menu-item">
+				<div class="icon">⚙️</div>
+				<a href="/home">Configurações</a>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
